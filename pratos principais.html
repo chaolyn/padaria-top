@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Pratos Salgados - Panificadora Sabor Caseiro</title>
+    <style>
+        :root {
+            --color-primary: #8B4513;
+            --color-secondary: #F5DEB3;
+            --color-accent: #D2691E;
+            --color-light: #FFF8DC;
+            --color-dark: #654321;
+            --color-success: #556B2F;
+            --color-info: #2F6F8F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(222, 184, 135);
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px;
+            background-position: 0 0, 20px 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: chocolate;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: wheat;
+            color: #5c3a1a;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #d2691e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            background-color: #5c3a1a;
+            color: wheat;
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(139, 69, 19, 0.9), rgba(210, 105, 30, 0.9));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .hero-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .hero-section p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .category-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .menu-section {
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid chocolate;
+        }
+
+        .section-header i {
+            font-size: 24px;
+            color: chocolate;
+        }
+
+        .section-header h3 {
+            color: #5c3a1a;
+            font-size: 22px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #d2691e;
+        }
+
+        .menu-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-header h4 {
+            color: #5c3a1a;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .price-tag {
+            background-color: chocolate;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .item-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background-color: wheat;
+            color: #5c3a1a;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .add-to-cart {
+            background-color: #556B2F;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #6B8E23;
+            transform: translateY(-2px);
+        }
+
+        .cart-button {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF6B6B;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .highlight-section {
+            background-color: rgba(85, 107, 47, 0.9);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin: 30px 20px;
+            border-radius: 10px;
+        }
+
+        .highlight-section h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-button {
+            background-color: wheat;
+            color: #5c3a1a;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .highlight-button:hover {
+            background-color: #5c3a1a;
+            color: wheat;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: linear-gradient(to right, #5c3a1a 0%, chocolate 100%);
+            color: wheat;
+            padding: 30px 20px 15px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 20px;
+        }
+
+        .footer-info h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .footer-info p {
+            margin-bottom: 5px;
+            color: rgba(245, 222, 179, 0.9);
+            font-size: 14px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: wheat;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .whatsapp-link {
+            color: #25D366;
+            font-weight: 600;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: wheat;
+            color: chocolate;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(245, 222, 179, 0.3);
+            color: rgba(245, 222, 179, 0.8);
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-icon {
+            font-size: 40px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .modal-content h3 {
+            color: chocolate;
+            margin-bottom: 10px;
+        }
+
+        #modal-item-name {
+            font-weight: 600;
+            color: #5c3a1a;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .modal-btn.continue {
+            background-color: #f0f0f0;
+            color: #5c3a1a;
+        }
+
+        .modal-btn.continue:hover {
+            background-color: #e0e0e0;
+        }
+
+        .modal-btn.checkout {
+            background-color: chocolate;
+            color: white;
+        }
+
+        .modal-btn.checkout:hover {
+            background-color: #d2691e;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: chocolate;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+            
+            .hero-section h2 {
+                font-size: 20px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+            
+            .hero-section {
+                margin: 10px;
+                padding: 20px 15px;
+            }
+            
+            .menu-item-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Panificadora Sabor Caseiro</h1>
+        <nav>
+            <ul class="container">
+                <li><a href="entradas.html" class="nav-button">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Cardápio
+                </a></li>
+                <li><a href="index.html" class="nav-button">
+                    <i class="fas fa-home"></i> Início
+                </a></li>
+                <li><a href="fazerpedido.html" class="nav-button cart-button">
+                    <i class="fas fa-shopping-cart"></i> Ver Pedido
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2><i class="fas fa-utensils"></i> Nossos Pratos Salgados</h2>
+                <p>Delícias salgadas feitas com receitas tradicionais e ingredientes frescos</p>
+                <div class="category-badges">
+                    <span class="badge"><i class="fas fa-fire"></i> Mais Populares</span>
+                    <span class="badge"><i class="fas fa-leaf"></i> Vegetarianos</span>
+                    <span class="badge"><i class="fas fa-pepper-hot"></i> Apimentados</span>
+                </div>
+            </div>
+        </section>
+        
+        <div class="menu-container">
+            <!-- Seção de Massas -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-pasta"></i>
+                    <h3>Massas e Pratos Quentes</h3>
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Lasanha de Frango</h4>
+                            <span class="price-tag">R$ 18,00</span>
+                        </div>
+                        <p class="item-description">Lasanha com frango desfiado, molho branco e queijo mussarela gratinado</p>
+                        <div class="item-tags">
+                            <span class="tag">Popular</span>
+                            <span class="tag">Porção: 400g</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Lasanha de Frango","price":18.00,"category":"Massas","description":"Lasanha com frango desfiado, molho branco e queijo mussarela gratinado"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Feijoada Completa</h4>
+                            <span class="price-tag">R$ 25,00</span>
+                        </div>
+                        <p class="item-description">Feijoada tradicional com arroz, farofa, couve e laranja</p>
+                        <div class="item-tags">
+                            <span class="tag">Especial</span>
+                            <span class="tag">Porção: 500g</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Feijoada Completa","price":25.00,"category":"Massas","description":"Feijoada tradicional com arroz, farofa, couve e laranja"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Espaguete à Bolonhesa</h4>
+                            <span class="price-tag">R$ 22,00</span>
+                        </div>
+                        <p class="item-description">Espaguete com molho bolonhesa tradicional e queijo parmesão</p>
+                        <div class="item-tags">
+                            <span class="tag">Clássico</span>
+                            <span class="tag">Porção: 350g</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Espaguete à Bolonhesa","price":22.00,"category":"Massas","description":"Espaguete com molho bolonhesa tradicional e queijo parmesão"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Frango à Parmegiana</h4>
+                            <span class="price-tag">R$ 24,00</span>
+                        </div>
+                        <p class="item-description">Filé de frango empanado com molho de tomate e queijo derretido</p>
+                        <div class="item-tags">
+                            <span class="tag">Popular</span>
+                            <span class="tag">Acompanha arroz</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Frango à Parmegiana","price":24.00,"category":"Massas","description":"Filé de frango empanado com molho de tomate e queijo derretido"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Escondidinho de Carne Seca</h4>
+                            <span class="price-tag">R$ 21,00</span>
+                        </div>
+                        <p class="item-description">Purê de mandioquinha com carne seca desfiada gratinada</p>
+                        <div class="item-tags">
+                            <span class="tag">Tradicional</span>
+                            <span class="tag">Porção: 400g</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Escondidinho de Carne Seca","price":21.00,"category":"Massas","description":"Purê de mandioquinha com carne seca desfiada gratinada"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Risoto de Funghi</h4>
+                            <span class="price-tag">R$ 26,00</span>
+                        </div>
+                        <p class="item-description">Risoto cremoso com cogumelos funghi e queijo parmesão</p>
+                        <div class="item-tags">
+                            <span class="tag">Vegetariano</span>
+                            <span class="tag">Especial</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Risoto de Funghi","price":26.00,"category":"Massas","description":"Risoto cremoso com cogumelos funghi e queijo parmesão"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Lanches -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-hamburger"></i>
+                    <h3>Lanches e Esfihas</h3>
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Esfiha de Carne</h4>
+                            <span class="price-tag">R$ 9,00</span>
+                        </div>
+                        <p class="item-description">Massa folhada recheada com carne moída temperada</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Tradicional</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Esfiha de Carne","price":9.00,"category":"Lanches","description":"Massa folhada recheada com carne moída temperada"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Esfiha de Queijo</h4>
+                            <span class="price-tag">R$ 8,50</span>
+                        </div>
+                        <p class="item-description">Recheada com mussarela derretida e orégano</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Vegetariano</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Esfiha de Queijo","price":8.50,"category":"Lanches","description":"Recheada com mussarela derretida e orégano"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Esfiha de Frango</h4>
+                            <span class="price-tag">R$ 9,00</span>
+                        </div>
+                        <p class="item-description">Frango desfiado com requeijão cremoso</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Recheio Cremoso</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Esfiha de Frango","price":9.00,"category":"Lanches","description":"Frango desfiado com requeijão cremoso"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Hambúrguer Artesanal</h4>
+                            <span class="price-tag">R$ 19,00</span>
+                        </div>
+                        <p class="item-description">Pão brioche, hambúrguer 180g, queijo, alface e tomate</p>
+                        <div class="item-tags">
+                            <span class="tag">Completo</span>
+                            <span class="tag">Acompanha fritas</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Hambúrguer Artesanal","price":19.00,"category":"Lanches","description":"Pão brioche, hambúrguer 180g, queijo, alface e tomate"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>X-Salada</h4>
+                            <span class="price-tag">R$ 16,00</span>
+                        </div>
+                        <p class="item-description">Pão de hambúrguer, hambúrguer, queijo, presunto e salada</p>
+                        <div class="item-tags">
+                            <span class="tag">Clássico</span>
+                            <span class="tag">Tradicional</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"X-Salada","price":16.00,"category":"Lanches","description":"Pão de hambúrguer, hambúrguer, queijo, presunto e salada"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Sanduíche Natural</h4>
+                            <span class="price-tag">R$ 15,00</span>
+                        </div>
+                        <p class="item-description">Pão integral, frango, ricota, alface e cenoura ralada</p>
+                        <div class="item-tags">
+                            <span class="tag">Leve</span>
+                            <span class="tag">Saudável</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Sanduíche Natural","price":15.00,"category":"Lanches","description":"Pão integral, frango, ricota, alface e cenoura ralada"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Porções -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-utensil-spoon"></i>
+                    <h3>Porções para Compartilhar</h3>
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Porção de Coxinhas</h4>
+                            <span class="price-tag">R$ 28,00</span>
+                        </div>
+                        <p class="item-description">10 unidades de coxinhas de frango com catupiry</p>
+                        <div class="item-tags">
+                            <span class="tag">Para 3-4 pessoas</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Porção de Coxinhas","price":28.00,"category":"Porções","description":"10 unidades de coxinhas de frango com catupiry"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Porção de Pastéis</h4>
+                            <span class="price-tag">R$ 32,00</span>
+                        </div>
+                        <p class="item-description">12 pastéis mistos (carne, queijo, frango)</p>
+                        <div class="item-tags">
+                            <span class="tag">Para 4-5 pessoas</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Porção de Pastéis","price":32.00,"category":"Porções","description":"12 pastéis mistos (carne, queijo, frango)"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Porção de Pão de Queijo</h4>
+                            <span class="price-tag">R$ 25,00</span>
+                        </div>
+                        <p class="item-description">20 unidades de pão de queijo mineiro</p>
+                        <div class="item-tags">
+                            <span class="tag">Para 4-6 pessoas</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Porção de Pão de Queijo","price":25.00,"category":"Porções","description":"20 unidades de pão de queijo mineiro"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Seção de Destaque -->
+        <section class="highlight-section">
+            <div class="highlight-content">
+                <h3>Destaque da Casa</h3>
+                <p>Experimente nosso <strong>Escondidinho de Carne Seca</strong> - eleito o preferido dos clientes!</p>
+                <button class="highlight-button add-to-cart" data-item='{"name":"Escondidinho de Carne Seca","price":21.00,"category":"Massas","description":"Purê de mandioquinha com carne seca desfiada gratinada"}'>
+                    Peça Agora
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3><i class="fas fa-store"></i> Panificadora Sabor Caseiro</h3>
+                <p>Rua das Flores, 123 - Centro</p>
+                <p>Horário: 6h às 20h (Seg a Sáb)</p>
+                <p>Domingo: 6h às 14h</p>
+            </div>
+            <div class="footer-contact">
+                <a href="tel:+5511987654321" class="footer-link">
+                    <i class="fas fa-phone"></i> (11) 98765-4321
+                </a>
+                <a href="mailto:panificadora.saborcaseiro@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> panificadora.saborcaseiro@gmail.com
+                </a>
+                <a href="https://wa.me/5511987654321" class="footer-link whatsapp-link">
+                    <i class="fab fa-whatsapp"></i> Faça seu pedido pelo WhatsApp
+                </a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2023 Panificadora Sabor Caseiro - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Modal de confirmação -->
+    <div class="modal" id="add-to-cart-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Item Adicionado!</h3>
+            <p id="modal-item-name"></p>
+            <p>O item foi adicionado ao seu carrinho.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn continue">Continuar Comprando</button>
+                <a href="fazerpedido.html" class="modal-btn checkout">Ir para o Pedido</a>
+            </div>
+        </div>
+    </div>
+
+       <script src="carrinho.js"></script>
+</body>
+</html>

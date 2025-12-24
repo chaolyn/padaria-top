@@ -1,0 +1,363 @@
+/* style.css - CSS melhorado */
+
+/* Importar fonte mais amigável */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: rgb(222, 184, 135);
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px, 40px 40px;
+    background-position: 0 0, 20px 20px;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header estilizado */
+header {
+    background: linear-gradient(to right, chocolate 0%, #d2691e 100%);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid wheat;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo-icon {
+    font-size: 3rem;
+    color: wheat;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+header h1 {
+    text-align: center;
+    color: wheat;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Navegação melhorada */
+.container {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: wheat;
+    color: #5c3a1a;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border: 2px solid #d2691e;
+}
+
+.nav-button:hover {
+    background-color: #5c3a1a;
+    color: wheat;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+}
+
+.nav-button i {
+    font-size: 1.2rem;
+}
+
+/* Seção de boas-vindas */
+.welcome-section {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 30px auto;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-section h2 {
+    color: chocolate;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    color: #5c3a1a;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+
+.card {
+    align-items: center;
+    text-align: center;
+    margin: 30px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    min-height: auto;
+    border: 1px solid #d2691e;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.card-header i {
+    font-size: 2.5rem;
+    color: chocolate;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    color: chocolate;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.card h3 {
+    color: #5c3a1a;
+    font-size: 1.4rem;
+    margin: 25px 0 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.contact-item i {
+    color: chocolate;
+    font-size: 1.4rem;
+    width: 30px;
+}
+
+address {
+    font-style: normal;
+    margin: 20px 0;
+}
+
+address p {
+    text-align: left;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+address a {
+    color: chocolate;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+    padding: 3px 5px;
+    border-radius: 4px;
+}
+
+address a:hover {
+    color: #8b4513;
+    background-color: rgba(210, 105, 30, 0.1);
+}
+
+.business-hours p {
+    text-align: center;
+    margin: 10px 0;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* Seção de recursos */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 1000px;
+}
+
+.feature {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 25px 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid chocolate;
+}
+
+.feature:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature i {
+    font-size: 2.5rem;
+    color: chocolate;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    color: #5c3a1a;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.feature p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Footer melhorado */
+footer {
+    background: linear-gradient(to right, #5c3a1a 0%, chocolate 100%);
+    color: wheat;
+    padding: 25px 20px;
+    margin-top: auto;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer p {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: wheat;
+    color: chocolate;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    background-color: #5c3a1a;
+    color: wheat;
+    transform: scale(1.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .welcome-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .feature {
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .nav-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .logo-icon {
+        font-size: 2.5rem;
+    }
+    
+    .card {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

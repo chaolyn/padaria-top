@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Pratos Doces - Panificadora Sabor Caseiro</title>
+    <style>
+        :root {
+            --color-primary: #8B4513;
+            --color-secondary: #F5DEB3;
+            --color-accent: #D2691E;
+            --color-light: #FFF8DC;
+            --color-dark: #654321;
+            --color-success: #556B2F;
+            --color-info: #2F6F8F;
+            --color-sweet: #A52A2A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(222, 184, 135);
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px;
+            background-position: 0 0, 20px 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: chocolate;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: wheat;
+            color: #5c3a1a;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #d2691e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            background-color: #5c3a1a;
+            color: wheat;
+            transform: translateY(-2px);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(165, 42, 42, 0.9), rgba(210, 105, 30, 0.9));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .hero-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .hero-section p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .category-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .menu-section {
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #A52A2A;
+        }
+
+        .section-header i {
+            font-size: 24px;
+            color: #A52A2A;
+        }
+
+        .section-header h3 {
+            color: #5c3a1a;
+            font-size: 22px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #A52A2A;
+        }
+
+        .menu-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-header h4 {
+            color: #5c3a1a;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .price-tag {
+            background-color: #A52A2A;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .item-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background-color: wheat;
+            color: #5c3a1a;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .add-to-cart {
+            background-color: #A52A2A;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #8B0000;
+            transform: translateY(-2px);
+        }
+
+        .cart-button {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #FF6B6B;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .highlight-section {
+            background-color: rgba(165, 42, 42, 0.9);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin: 30px 20px;
+            border-radius: 10px;
+        }
+
+        .highlight-section h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-button {
+            background-color: wheat;
+            color: #5c3a1a;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .highlight-button:hover {
+            background-color: #5c3a1a;
+            color: wheat;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: linear-gradient(to right, #5c3a1a 0%, chocolate 100%);
+            color: wheat;
+            padding: 30px 20px 15px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 20px;
+        }
+
+        .footer-info h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .footer-info p {
+            margin-bottom: 5px;
+            color: rgba(245, 222, 179, 0.9);
+            font-size: 14px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: wheat;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .whatsapp-link {
+            color: #25D366;
+            font-weight: 600;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: wheat;
+            color: chocolate;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(245, 222, 179, 0.3);
+            color: rgba(245, 222, 179, 0.8);
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-icon {
+            font-size: 40px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .modal-content h3 {
+            color: #A52A2A;
+            margin-bottom: 10px;
+        }
+
+        #modal-item-name {
+            font-weight: 600;
+            color: #5c3a1a;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .modal-btn.continue {
+            background-color: #f0f0f0;
+            color: #5c3a1a;
+        }
+
+        .modal-btn.continue:hover {
+            background-color: #e0e0e0;
+        }
+
+        .modal-btn.checkout {
+            background-color: #A52A2A;
+            color: white;
+        }
+
+        .modal-btn.checkout:hover {
+            background-color: #8B0000;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: #A52A2A;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+            
+            .hero-section h2 {
+                font-size: 20px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+            
+            .hero-section {
+                margin: 10px;
+                padding: 20px 15px;
+            }
+            
+            .menu-item-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Panificadora Sabor Caseiro</h1>
+        <nav>
+            <ul class="container">
+                <li><a href="entradas.html" class="nav-button">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Cardápio
+                </a></li>
+                <li><a href="index.html" class="nav-button">
+                    <i class="fas fa-home"></i> Início
+                </a></li>
+                <li><a href="fazerpedido.html" class="nav-button cart-button">
+                    <i class="fas fa-shopping-cart"></i> Ver Pedido
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2><i class="fas fa-cookie-bite"></i> Nossas Delícias Doces</h2>
+                <p>Doces irresistíveis feitos com receitas tradicionais e muito carinho</p>
+                <div class="category-badges">
+                    <span class="badge"><i class="fas fa-star"></i> Mais Vendidos</span>
+                    <span class="badge"><i class="fas fa-birthday-cake"></i> Bolos</span>
+                    <span class="badge"><i class="fas fa-ice-cream"></i> Gelados</span>
+                </div>
+            </div>
+        </section>
+        
+        <div class="menu-container">
+            <!-- Seção de Bolos -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h3>Bolos Caseiros</h3>
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Bolo de Chocolate</h4>
+                            <span class="price-tag">R$ 12,00</span>
+                        </div>
+                        <p class="item-description">Bolo úmido com cobertura de chocolate meio amargo e granulado</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Popular</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Bolo de Chocolate","price":12.00,"category":"Bolos","description":"Bolo úmido com cobertura de chocolate meio amargo e granulado"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Bolo de Cenoura</h4>
+                            <span class="price-tag">R$ 10,00</span>
+                        </div>
+                        <p class="item-description">Bolo fofinho de cenoura com cobertura de chocolate</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Tradicional</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Bolo de Cenoura","price":10.00,"category":"Bolos","description":"Bolo fofinho de cenoura com cobertura de chocolate"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Bolo de Fubá</h4>
+                            <span class="price-tag">R$ 9,00</span>
+                        </div>
+                        <p class="item-description">Bolo de fubá cremoso, receita tradicional mineira</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Caseiro</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Bolo de Fubá","price":9.00,"category":"Bolos","description":"Bolo de fubá cremoso, receita tradicional mineira"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Bolo de Laranja</h4>
+                            <span class="price-tag">R$ 9,50</span>
+                        </div>
+                        <p class="item-description">Bolo cítrico com raspas de laranja e calda</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Refrescante</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Bolo de Laranja","price":9.50,"category":"Bolos","description":"Bolo cítrico com raspas de laranja e calda"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Bolo Red Velvet</h4>
+                            <span class="price-tag">R$ 15,00</span>
+                        </div>
+                        <p class="item-description">Bolo aveludado vermelho com cream cheese</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Especial</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Bolo Red Velvet","price":15.00,"category":"Bolos","description":"Bolo aveludado vermelho com cream cheese"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Bolo de Coco</h4>
+                            <span class="price-tag">R$ 11,00</span>
+                        </div>
+                        <p class="item-description">Bolo úmido com coco ralado e leite de coco</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Tropical</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Bolo de Coco","price":11.00,"category":"Bolos","description":"Bolo úmido com coco ralado e leite de coco"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Tortas Doces -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-pie"></i>
+                    <h3>Tortas Doces</h3>
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Torta de Maçã</h4>
+                            <span class="price-tag">R$ 9,00</span>
+                        </div>
+                        <p class="item-description">Fatia de torta de maçã com canela e massa crocante</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Clássica</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Torta de Maçã","price":9.00,"category":"Tortas","description":"Fatia de torta de maçã com canela e massa crocante"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Torta de Limão</h4>
+                            <span class="price-tag">R$ 8,50</span>
+                        </div>
+                        <p class="item-description">Massa crocante, recheio de limão e merengue</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Cítrica</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Torta de Limão","price":8.50,"category":"Tortas","description":"Massa crocante, recheio de limão e merengue"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Torta de Chocolate</h4>
+                            <span class="price-tag">R$ 10,00</span>
+                        </div>
+                        <p class="item-description">Massa de chocolate com recheio cremoso de chocolate</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Indulgente</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Torta de Chocolate","price":10.00,"category":"Tortas","description":"Massa de chocolate com recheio cremoso de chocolate"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Torta de Morango</h4>
+                            <span class="price-tag">R$ 11,00</span>
+                        </div>
+                        <p class="item-description">Massa amanteigada, creme e morangos frescos</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Frutas</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Torta de Morango","price":11.00,"category":"Tortas","description":"Massa amanteigada, creme e morangos frescos"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Torta de Banana</h4>
+                            <span class="price-tag">R$ 8,00</span>
+                        </div>
+                        <p class="item-description">Bananas caramelizadas com massa de torta</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Caramelizada</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Torta de Banana","price":8.00,"category":"Tortas","description":"Bananas caramelizadas com massa de torta"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Torta de Nozes</h4>
+                            <span class="price-tag">R$ 12,00</span>
+                        </div>
+                        <p class="item-description">Torta recheada com nozes e calda de caramelo</p>
+                        <div class="item-tags">
+                            <span class="tag">Fatia</span>
+                            <span class="tag">Premium</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Torta de Nozes","price":12.00,"category":"Tortas","description":"Torta recheada com nozes e calda de caramelo"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Doces Tradicionais -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-candy-cane"></i>
+                    <h3>Doces Tradicionais</h3>
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Brigadeiro</h4>
+                            <span class="price-tag">R$ 4,00</span>
+                        </div>
+                        <p class="item-description">O clássico brasileiro feito com chocolate e granulado</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Popular</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Brigadeiro","price":4.00,"category":"Doces","description":"O clássico brasileiro feito com chocolate e granulado"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Beijinho</h4>
+                            <span class="price-tag">R$ 4,00</span>
+                        </div>
+                        <p class="item-description">Doce de leite condensado e coco ralado</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Coco</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Beijinho","price":4.00,"category":"Doces","description":"Doce de leite condensado e coco ralado"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Quindim</h4>
+                            <span class="price-tag">R$ 6,50</span>
+                        </div>
+                        <p class="item-description">Doce de gemas, coco e açúcar, típico da Bahia</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Tradicional</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Quindim","price":6.50,"category":"Doces","description":"Doce de gemas, coco e açúcar, típico da Bahia"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Cajuzinho</h4>
+                            <span class="price-tag">R$ 3,50</span>
+                        </div>
+                        <p class="item-description">Doce de amendoim com formato de caju</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Amendoim</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Cajuzinho","price":3.50,"category":"Doces","description":"Doce de amendoim com formato de caju"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Olho de Sogra</h4>
+                            <span class="price-tag">R$ 4,50</span>
+                        </div>
+                        <p class="item-description">Doce de leite envolvido em coco ralado</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Tradicional</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Olho de Sogra","price":4.50,"category":"Doces","description":"Doce de leite envolvido em coco ralado"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Bem Casado</h4>
+                            <span class="price-tag">R$ 5,00</span>
+                        </div>
+                        <p class="item-description">Dois biscoitos unidos por doce de leite</p>
+                        <div class="item-tags">
+                            <span class="tag">Unidade</span>
+                            <span class="tag">Festivo</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Bem Casado","price":5.00,"category":"Doces","description":"Dois biscoitos unidos por doce de leite"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Sobremesas -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-ice-cream"></i>
+                    <h3>Sobremesas</h3>
+                </div>
+                
+                <div class="menu-grid">
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Pudim de Leite</h4>
+                            <span class="price-tag">R$ 7,50</span>
+                        </div>
+                        <p class="item-description">Pudim tradicional de leite condensado com calda</p>
+                        <div class="item-tags">
+                            <span class="tag">Porção</span>
+                            <span class="tag">Clássico</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Pudim de Leite","price":7.50,"category":"Sobremesas","description":"Pudim tradicional de leite condensado com calda"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Mousse de Chocolate</h4>
+                            <span class="price-tag">R$ 8,00</span>
+                        </div>
+                        <p class="item-description">Mousse cremosa de chocolate meio amargo</p>
+                        <div class="item-tags">
+                            <span class="tag">Porção</span>
+                            <span class="tag">Cremosa</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Mousse de Chocolate","price":8.00,"category":"Sobremesas","description":"Mousse cremosa de chocolate meio amargo"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Mousse de Maracujá</h4>
+                            <span class="price-tag">R$ 8,50</span>
+                        </div>
+                        <p class="item-description">Mousse leve e refrescante de maracujá</p>
+                        <div class="item-tags">
+                            <span class="tag">Porção</span>
+                            <span class="tag">Refrescante</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Mousse de Maracujá","price":8.50,"category":"Sobremesas","description":"Mousse leve e refrescante de maracujá"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Salada de Frutas</h4>
+                            <span class="price-tag">R$ 8,00</span>
+                        </div>
+                        <p class="item-description">Frutas frescas da estação com calda de laranja</p>
+                        <div class="item-tags">
+                            <span class="tag">Porção</span>
+                            <span class="tag">Saudável</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Salada de Frutas","price":8.00,"category":"Sobremesas","description":"Frutas frescas da estação com calda de laranja"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Petit Gateau</h4>
+                            <span class="price-tag">R$ 14,00</span>
+                        </div>
+                        <p class="item-description">Bolinho de chocolate com recheio cremoso</p>
+                        <div class="item-tags">
+                            <span class="tag">Porção</span>
+                            <span class="tag">Especial</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Petit Gateau","price":14.00,"category":"Sobremesas","description":"Bolinho de chocolate com recheio cremoso"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+
+                    <div class="menu-item-card">
+                        <div class="menu-item-header">
+                            <h4>Tiramisu</h4>
+                            <span class="price-tag">R$ 12,00</span>
+                        </div>
+                        <p class="item-description">Sobremesa italiana com café e mascarpone</p>
+                        <div class="item-tags">
+                            <span class="tag">Porção</span>
+                            <span class="tag">Italiana</span>
+                        </div>
+                        <button class="add-to-cart" data-item='{"name":"Tiramisu","price":12.00,"category":"Sobremesas","description":"Sobremesa italiana com café e mascarpone"}'>
+                            <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Seção de Destaque -->
+        <section class="highlight-section">
+            <div class="highlight-content">
+                <h3>Doce da Casa</h3>
+                <p>Experimente nosso <strong>Bolo de Chocolate Caseiro</strong> - eleito o favorito pelos clientes!</p>
+                <button class="highlight-button add-to-cart" data-item='{"name":"Bolo de Chocolate","price":12.00,"category":"Bolos","description":"Bolo úmido com cobertura de chocolate meio amargo e granulado"}'>
+                    Peça Agora
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3><i class="fas fa-store"></i> Panificadora Sabor Caseiro</h3>
+                <p>Rua das Flores, 123 - Centro</p>
+                <p>Horário: 6h às 20h (Seg a Sáb)</p>
+                <p>Domingo: 6h às 14h</p>
+            </div>
+            <div class="footer-contact">
+                <a href="tel:+5511987654321" class="footer-link">
+                    <i class="fas fa-phone"></i> (11) 98765-4321
+                </a>
+                <a href="mailto:panificadora.saborcaseiro@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> panificadora.saborcaseiro@gmail.com
+                </a>
+                <a href="https://wa.me/5511987654321" class="footer-link whatsapp-link">
+                    <i class="fab fa-whatsapp"></i> Faça seu pedido pelo WhatsApp
+                </a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2023 Panificadora Sabor Caseiro - Todos os direitos reservados</p>
+    </footer>
+
+    <!-- Modal de confirmação -->
+    <div class="modal" id="add-to-cart-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Item Adicionado!</h3>
+            <p id="modal-item-name"></p>
+            <p>O item foi adicionado ao seu carrinho.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn continue">Continuar Comprando</button>
+                <a href="fazerpedido.html" class="modal-btn checkout">Ir para o Pedido</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de Carrinho CORRIGIDO
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de doces carregada');
+            
+            // Inicializar carrinho se não existir
+            if (!localStorage.getItem('panificadoraCart')) {
+                localStorage.setItem('panificadoraCart', JSON.stringify([]));
+                console.log('Carrinho inicializado vazio');
+            } else {
+                console.log('Carrinho já existe no localStorage:', localStorage.getItem('panificadoraCart'));
+            }
+
+            // Atualizar contador do carrinho
+            updateCartCount();
+
+            // Botões de adicionar ao carrinho
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemData = JSON.parse(this.getAttribute('data-item'));
+                    console.log('Item clicado:', itemData);
+                    addToCart(itemData);
+                    
+                    // Mostrar modal de confirmação
+                    showAddToCartModal(itemData.name);
+                });
+            });
+
+            // Modal
+            const modal = document.getElementById('add-to-cart-modal');
+            const closeModal = document.querySelector('.close-modal');
+            const continueBtn = document.querySelector('.modal-btn.continue');
+
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            continueBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        function addToCart(item) {
+            console.log('Adicionando ao carrinho:', item);
+            
+            // Carregar carrinho do localStorage
+            let cart = [];
+            try {
+                const cartData = localStorage.getItem('panificadoraCart');
+                console.log('Dados do carrinho no localStorage:', cartData);
+                if (cartData) {
+                    cart = JSON.parse(cartData);
+                }
+            } catch (error) {
+                console.error('Erro ao carregar carrinho:', error);
+                cart = [];
+            }
+            
+            // Verificar se o item já está no carrinho
+            const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+            
+            if (existingItemIndex !== -1) {
+                // Incrementar quantidade em 1 (não +4)
+                cart[existingItemIndex].quantity = (cart[existingItemIndex].quantity || 1) + 1;
+                console.log('Item já existe, incrementando quantidade. Nova quantidade:', cart[existingItemIndex].quantity);
+            } else {
+                // Adicionar novo item com quantidade 1
+                item.quantity = 1;
+                cart.push(item);
+                console.log('Novo item adicionado:', item);
+            }
+            
+            // Salvar no localStorage
+            try {
+                localStorage.setItem('panificadoraCart', JSON.stringify(cart));
+                console.log('Carrinho salvo no localStorage:', cart);
+            } catch (error) {
+                console.error('Erro ao salvar carrinho:', error);
+            }
+            
+            // Atualizar contador
+            updateCartCount();
+            
+            // Mostrar modal de confirmação
+            showAddToCartModal(item.name);
+        }
+
+        function updateCartCount() {
+            let cart = [];
+            try {
+                const cartData = localStorage.getItem('panificadoraCart');
+                if (cartData) {
+                    cart = JSON.parse(cartData);
+                }
+            } catch (error) {
+                console.error('Erro ao carregar carrinho:', error);
+                cart = [];
+            }
+            
+            const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+            console.log('Total de itens no carrinho:', totalItems);
+            
+            // Atualizar contador no botão do carrinho
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = totalItems;
+            });
+        }
+
+        function showAddToCartModal(itemName) {
+            const modal = document.getElementById('add-to-cart-modal');
+            const modalItemName = document.getElementById('modal-item-name');
+            
+            modalItemName.textContent = itemName;
+            modal.style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

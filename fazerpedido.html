@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Finalizar Pedido - Panificadora Sabor Caseiro</title>
+    <style>
+        :root {
+            --color-primary: #8B4513;
+            --color-secondary: #F5DEB3;
+            --color-accent: #D2691E;
+            --color-light: #FFF8DC;
+            --color-dark: #654321;
+            --color-success: #556B2F;
+            --color-info: #2F6F8F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(222, 184, 135);
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px;
+            background-position: 0 0, 20px 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: chocolate;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: wheat;
+            color: #5c3a1a;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #d2691e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:hover {
+            background-color: #5c3a1a;
+            color: wheat;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .form-column {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .summary-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #5c3a1a;
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid chocolate;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d2691e;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5c3a1a;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: chocolate;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .delivery-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .delivery-option:hover {
+            border-color: chocolate;
+        }
+
+        .delivery-option.selected {
+            border-color: chocolate;
+            background-color: rgba(210, 105, 30, 0.1);
+        }
+
+        .delivery-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: #5c3a1a;
+            margin-bottom: 5px;
+        }
+
+        .option-description {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .option-price {
+            font-weight: 700;
+            color: chocolate;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .payment-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .payment-method:hover {
+            border-color: chocolate;
+        }
+
+        .payment-method.selected {
+            border-color: chocolate;
+            background-color: rgba(210, 105, 30, 0.1);
+        }
+
+        .payment-method i {
+            font-size: 32px;
+            color: chocolate;
+            margin-bottom: 10px;
+        }
+
+        .payment-method span {
+            font-weight: 600;
+            color: #5c3a1a;
+        }
+
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #5c3a1a;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            color: chocolate;
+            font-weight: 600;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background-color: wheat;
+            color: #5c3a1a;
+            border-radius: 50%;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background-color: chocolate;
+            color: white;
+        }
+
+        .quantity-display {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: #5c3a1a;
+        }
+
+        .remove-item {
+            color: #ff6b6b;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+
+        .remove-item:hover {
+            color: #ff0000;
+        }
+
+        .price-summary {
+            margin-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-row.total {
+            font-weight: 700;
+            font-size: 18px;
+            color: #5c3a1a;
+        }
+
+        .price-label {
+            color: #666;
+        }
+
+        .price-value {
+            color: #5c3a1a;
+            font-weight: 600;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #556B2F;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #6B8E23;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .checkout-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .empty-cart i {
+            font-size: 64px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart h3 {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .empty-cart p {
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        footer {
+            background: linear-gradient(to right, #5c3a1a 0%, chocolate 100%);
+            color: wheat;
+            padding: 30px 20px 15px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 20px;
+        }
+
+        .footer-info h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .footer-info p {
+            margin-bottom: 5px;
+            color: rgba(245, 222, 179, 0.9);
+            font-size: 14px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: wheat;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .whatsapp-link {
+            color: #25D366;
+            font-weight: 600;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: wheat;
+            color: chocolate;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(245, 222, 179, 0.3);
+            color: rgba(245, 222, 179, 0.8);
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-icon {
+            font-size: 48px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .modal-content h3 {
+            color: #5c3a1a;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .order-details {
+            background-color: #FFF8DC;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .order-details p {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .order-details strong {
+            color: #5c3a1a;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .modal-btn.continue {
+            background-color: #f0f0f0;
+            color: #5c3a1a;
+        }
+
+        .modal-btn.continue:hover {
+            background-color: #e0e0e0;
+        }
+
+        .modal-btn.whatsapp {
+            background-color: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .modal-btn.whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: chocolate;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .quantity-controls {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+            
+            .section-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Panificadora Sabor Caseiro</h1>
+        <nav>
+            <ul class="container">
+                <li><a href="index.html" class="nav-button">
+                    <i class="fas fa-home"></i> Início
+                </a></li>
+                <li><a href="entradas.html" class="nav-button">
+                    <i class="fas fa-utensils"></i> Cardápio
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <div class="form-column">
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <i class="fas fa-truck"></i> Informações de Entrega
+                    </h2>
+                    
+                    <div class="form-group">
+                        <label for="customer-name"><i class="fas fa-user"></i> Nome Completo *</label>
+                        <input type="text" id="customer-name" placeholder="Digite seu nome completo" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customer-phone"><i class="fas fa-phone"></i> Telefone *</label>
+                            <input type="tel" id="customer-phone" placeholder="(11) 99999-9999" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-email"><i class="fas fa-envelope"></i> E-mail</label>
+                            <input type="email" id="customer-email" placeholder="seu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="delivery-address"><i class="fas fa-map-marker-alt"></i> Endereço de Entrega *</label>
+                        <input type="text" id="delivery-address" placeholder="Rua, número, bairro" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="delivery-complement">Complemento</label>
+                            <input type="text" id="delivery-complement" placeholder="Apartamento, bloco, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="delivery-reference">Ponto de Referência</label>
+                            <input type="text" id="delivery-reference" placeholder="Próximo a...">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="delivery-instructions"><i class="fas fa-sticky-note"></i> Instruções de Entrega</label>
+                        <textarea id="delivery-instructions" rows="3" placeholder="Alguma instrução especial para a entrega?"></textarea>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <i class="fas fa-shipping-fast"></i> Opções de Entrega
+                    </h2>
+                    
+                    <div class="delivery-options">
+                        <div class="delivery-option selected" data-type="delivery" data-price="5.00">
+                            <input type="radio" id="delivery-home" name="delivery-option" checked>
+                            <div class="option-content">
+                                <div class="option-title">Entrega em Domicílio</div>
+                                <div class="option-description">Receba seu pedido no conforto da sua casa</div>
+                            </div>
+                            <div class="option-price">R$ 5,00</div>
+                        </div>
+                        
+                        <div class="delivery-option" data-type="pickup" data-price="0.00">
+                            <input type="radio" id="delivery-pickup" name="delivery-option">
+                            <div class="option-content">
+                                <div class="option-title">Retirar na Loja</div>
+                                <div class="option-description">Retire seu pedido em nossa panificadora</div>
+                            </div>
+                            <div class="option-price">Grátis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <i class="fas fa-credit-card"></i> Forma de Pagamento
+                    </h2>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="dinheiro">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Dinheiro</span>
+                        </div>
+                        
+                        <div class="payment-method" data-method="cartao">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Cartão</span>
+                        </div>
+                        
+                        <div class="payment-method" data-method="pix">
+                            <i class="fas fa-qrcode"></i>
+                            <span>PIX</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="change-field">
+                        <label for="change-for"><i class="fas fa-exchange-alt"></i> Precisa de troco para quanto?</label>
+                        <input type="number" id="change-for" placeholder="Digite o valor para troco" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-column">
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <i class="fas fa-shopping-cart"></i> Seu Pedido
+                    </h2>
+                    
+                    <div class="cart-items" id="cart-items-container">
+                        <!-- Itens serão carregados aqui -->
+                    </div>
+                    
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span class="price-label">Subtotal</span>
+                            <span class="price-value" id="subtotal">R$ 0,00</span>
+                        </div>
+                        
+                        <div class="price-row">
+                            <span class="price-label">Taxa de Entrega</span>
+                            <span class="price-value" id="delivery-fee">R$ 0,00</span>
+                        </div>
+                        
+                        <div class="price-row total">
+                            <span class="price-label">Total</span>
+                            <span class="price-value" id="total-price">R$ 0,00</span>
+                        </div>
+                    </div>
+                    
+                    <button class="checkout-btn" id="checkout-btn" disabled>
+                        <i class="fas fa-check-circle"></i> Finalizar Pedido
+                    </button>
+                </div>
+                
+                <div class="section-card">
+                    <h2 class="section-title">
+                        <i class="fas fa-store"></i> Nossa Loja
+                    </h2>
+                    <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro</p>
+                    <p><strong>Telefone:</strong> (11) 98765-4321</p>
+                    <p><strong>Horário:</strong> 6h às 20h (Seg a Sáb)</p>
+                    <p><strong>Domingo:</strong> 6h às 14h</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3><i class="fas fa-store"></i> Panificadora Sabor Caseiro</h3>
+                <p>Rua das Flores, 123 - Centro</p>
+                <p>Horário: 6h às 20h (Seg a Sáb)</p>
+                <p>Domingo: 6h às 14h</p>
+            </div>
+            <div class="footer-contact">
+                <a href="tel:+5511987654321" class="footer-link">
+                    <i class="fas fa-phone"></i> (11) 98765-4321
+                </a>
+                <a href="mailto:panificadora.saborcaseiro@gmail.com" class="footer-link">
+                    <i class="fas fa-envelope"></i> panificadora.saborcaseiro@gmail.com
+                </a>
+                <a href="https://wa.me/5511987654321" class="footer-link whatsapp-link">
+                    <i class="fab fa-whatsapp"></i> Faça seu pedido pelo WhatsApp
+                </a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2023 Panificadora Sabor Caseiro - Todos os direitos reservados</p>
+    </footer>
+
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Pedido Confirmado!</h3>
+            <p>Seu pedido foi realizado com sucesso!</p>
+            <p>Em breve entraremos em contato para confirmar.</p>
+            
+            <div class="order-details" id="order-details"></div>
+            
+            <p><strong>Tempo estimado de entrega:</strong> 30-45 minutos</p>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn continue" id="continue-shopping">Fazer Novo Pedido</button>
+                <a href="#" class="modal-btn whatsapp" id="whatsapp-link" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de Carrinho - Finalizar Pedido
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de finalizar pedido carregada');
+            
+            // Elementos principais
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const subtotalElement = document.getElementById('subtotal');
+            const deliveryFeeElement = document.getElementById('delivery-fee');
+            const totalPriceElement = document.getElementById('total-price');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            // Variáveis globais
+            let cart = [];
+            let deliveryFee = 5.00; // Taxa padrão de entrega
+            let subtotal = 0;
+            let total = 0;
+            
+            // Carregar carrinho do localStorage
+            loadCart();
+            
+            // Renderizar itens do carrinho
+            renderCartItems();
+            
+            // Atualizar totais
+            updateTotals();
+            
+            // Configurar eventos de entrega
+            setupDeliveryOptions();
+            
+            // Configurar eventos de pagamento
+            setupPaymentMethods();
+            
+            // Configurar validação do formulário
+            setupFormValidation();
+            
+            // Configurar botão de finalizar pedido
+            checkoutBtn.addEventListener('click', processOrder);
+            
+            // Configurar botão "Fazer Novo Pedido"
+            document.getElementById('continue-shopping').addEventListener('click', function() {
+                localStorage.removeItem('panificadoraCart');
+                window.location.href = 'entradas.html';
+            });
+            
+            // Fechar modal
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('confirmation-modal').style.display = 'none';
+            });
+            
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('confirmation-modal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Função para carregar carrinho
+            function loadCart() {
+                try {
+                    const cartData = localStorage.getItem('panificadoraCart');
+                    if (cartData) {
+                        cart = JSON.parse(cartData);
+                        console.log('Carrinho carregado:', cart);
+                    } else {
+                        cart = [];
+                        console.log('Carrinho vazio');
+                    }
+                } catch (error) {
+                    console.error('Erro ao carregar carrinho:', error);
+                    cart = [];
+                }
+            }
+            
+            // Função para renderizar itens do carrinho
+            function renderCartItems() {
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>Seu carrinho está vazio</h3>
+                            <p>Adicione itens deliciosos do nosso cardápio!</p>
+                            <a href="entradas.html" class="nav-button">
+                                <i class="fas fa-utensils"></i> Ver Cardápio
+                            </a>
+                        </div>
+                    `;
+                    checkoutBtn.disabled = true;
+                    return;
+                }
+                
+                let cartHTML = '';
+                
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    cartHTML += `
+                        <div class="cart-item" data-index="${index}">
+                            <div class="item-info">
+                                <div class="item-name">${item.name}</div>
+                                <div class="item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease-quantity" data-index="${index}">-</button>
+                                <span class="quantity-display">${item.quantity}</span>
+                                <button class="quantity-btn increase-quantity" data-index="${index}">+</button>
+                                <button class="remove-item" data-index="${index}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = cartHTML;
+                
+                // Adicionar eventos aos botões
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        increaseQuantity(index);
+                    });
+                });
+                
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        decreaseQuantity(index);
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        removeItem(index);
+                    });
+                });
+            }
+            
+            // Função para aumentar quantidade
+            function increaseQuantity(index) {
+                if (index >= 0 && index < cart.length) {
+                    cart[index].quantity += 1;
+                    saveCart();
+                    renderCartItems();
+                    updateTotals();
+                }
+            }
+            
+            // Função para diminuir quantidade
+            function decreaseQuantity(index) {
+                if (index >= 0 && index < cart.length) {
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity -= 1;
+                    } else {
+                        // Se quantidade for 1, remover item
+                        removeItem(index);
+                        return;
+                    }
+                    saveCart();
+                    renderCartItems();
+                    updateTotals();
+                }
+            }
+            
+            // Função para remover item
+            function removeItem(index) {
+                if (index >= 0 && index < cart.length) {
+                    if (confirm(`Deseja remover "${cart[index].name}" do carrinho?`)) {
+                        cart.splice(index, 1);
+                        saveCart();
+                        renderCartItems();
+                        updateTotals();
+                    }
+                }
+            }
+            
+            // Função para salvar carrinho
+            function saveCart() {
+                try {
+                    localStorage.setItem('panificadoraCart', JSON.stringify(cart));
+                    console.log('Carrinho salvo:', cart);
+                } catch (error) {
+                    console.error('Erro ao salvar carrinho:', error);
+                }
+            }
+            
+            // Função para atualizar totais
+            function updateTotals() {
+                subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                // Verificar se é retirada na loja
+                const isPickup = document.querySelector('#delivery-pickup').checked;
+                if (isPickup) {
+                    deliveryFee = 0;
+                }
+                
+                total = subtotal + deliveryFee;
+                
+                // Atualizar elementos
+                subtotalElement.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                deliveryFeeElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')}`;
+                totalPriceElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+                
+                // Habilitar/desabilitar botão de finalizar
+                checkoutBtn.disabled = cart.length === 0;
+            }
+            
+            // Configurar opções de entrega
+            function setupDeliveryOptions() {
+                const deliveryOptions = document.querySelectorAll('.delivery-option');
+                
+                deliveryOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Remover seleção de todos
+                        deliveryOptions.forEach(opt => {
+                            opt.classList.remove('selected');
+                            opt.querySelector('input').checked = false;
+                        });
+                        
+                        // Selecionar opção clicada
+                        this.classList.add('selected');
+                        this.querySelector('input').checked = true;
+                        
+                        // Atualizar taxa de entrega
+                        deliveryFee = parseFloat(this.getAttribute('data-price'));
+                        updateTotals();
+                    });
+                });
+            }
+            
+            // Configurar métodos de pagamento
+            function setupPaymentMethods() {
+                const paymentMethods = document.querySelectorAll('.payment-method');
+                
+                paymentMethods.forEach(method => {
+                    method.addEventListener('click', function() {
+                        // Remover seleção de todos
+                        paymentMethods.forEach(m => m.classList.remove('selected'));
+                        
+                        // Selecionar método clicado
+                        this.classList.add('selected');
+                        
+                        // Mostrar/ocultar campo de troco
+                        const paymentMethod = this.getAttribute('data-method');
+                        const changeField = document.getElementById('change-field');
+                        
+                        if (paymentMethod === 'dinheiro') {
+                            changeField.style.display = 'block';
+                        } else {
+                            changeField.style.display = 'none';
+                            document.getElementById('change-for').value = '';
+                        }
+                    });
+                });
+            }
+            
+            // Configurar validação do formulário
+            function setupFormValidation() {
+                const requiredFields = [
+                    'customer-name',
+                    'customer-phone',
+                    'delivery-address'
+                ];
+                
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    field.addEventListener('input', validateForm);
+                });
+            }
+            
+            // Validar formulário
+            function validateForm() {
+                const name = document.getElementById('customer-name').value.trim();
+                const phone = document.getElementById('customer-phone').value.trim();
+                const address = document.getElementById('delivery-address').value.trim();
+                
+                const isValid = name !== '' && phone !== '' && address !== '' && cart.length > 0;
+                
+                return isValid;
+            }
+            
+            // Processar pedido
+            function processOrder() {
+                if (!validateForm()) {
+                    alert('Por favor, preencha todos os campos obrigatórios e adicione itens ao carrinho.');
+                    return;
+                }
+                
+                // Coletar dados do formulário
+                const orderData = {
+                    customer: {
+                        name: document.getElementById('customer-name').value.trim(),
+                        phone: document.getElementById('customer-phone').value.trim(),
+                        email: document.getElementById('customer-email').value.trim() || 'Não informado',
+                        address: document.getElementById('delivery-address').value.trim(),
+                        complement: document.getElementById('delivery-complement').value.trim() || 'Não informado',
+                        reference: document.getElementById('delivery-reference').value.trim() || 'Não informado',
+                        instructions: document.getElementById('delivery-instructions').value.trim() || 'Nenhuma'
+                    },
+                    delivery: {
+                        type: document.querySelector('.delivery-option.selected').getAttribute('data-type'),
+                        fee: deliveryFee,
+                        option: document.querySelector('.delivery-option.selected .option-title').textContent
+                    },
+                    payment: {
+                        method: document.querySelector('.payment-method.selected').getAttribute('data-method'),
+                        change: document.getElementById('change-for').value || 'Não precisa de troco'
+                    },
+                    items: cart,
+                    totals: {
+                        subtotal: subtotal,
+                        delivery: deliveryFee,
+                        total: total
+                    },
+                    timestamp: new Date().toLocaleString('pt-BR')
+                };
+                
+                // Gerar mensagem para WhatsApp
+                const whatsappMessage = generateWhatsAppMessage(orderData);
+                
+                // Atualizar link do WhatsApp
+                const whatsappLink = document.getElementById('whatsapp-link');
+                whatsappLink.href = `https://wa.me/5511987654321?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                // Mostrar detalhes do pedido no modal
+                showOrderDetails(orderData);
+                
+                // Mostrar modal de confirmação
+                document.getElementById('confirmation-modal').style.display = 'flex';
+                
+                // Limpar carrinho (opcional)
+                // localStorage.removeItem('panificadoraCart');
+            }
+            
+            // Gerar mensagem para WhatsApp
+            function generateWhatsAppMessage(orderData) {
+                let message = `🍞 *NOVO PEDIDO - Panificadora Sabor Caseiro* 🍞\n\n`;
+                message += `📋 *DETALHES DO PEDIDO*\n`;
+                message += `👤 *Cliente:* ${orderData.customer.name}\n`;
+                message += `📞 *Telefone:* ${orderData.customer.phone}\n`;
+                message += `📧 *E-mail:* ${orderData.customer.email}\n\n`;
+                
+                message += `📍 *ENDEREÇO DE ENTREGA*\n`;
+                message += `📭 *Endereço:* ${orderData.customer.address}\n`;
+                message += `🏠 *Complemento:* ${orderData.customer.complement}\n`;
+                message += `📍 *Referência:* ${orderData.customer.reference}\n`;
+                message += `📝 *Instruções:* ${orderData.customer.instructions}\n\n`;
+                
+                message += `🚚 *ENTREGA*\n`;
+                message += `📦 *Tipo:* ${orderData.delivery.option}\n`;
+                message += `💲 *Taxa:* R$ ${orderData.delivery.fee.toFixed(2)}\n\n`;
+                
+                message += `💳 *PAGAMENTO*\n`;
+                message += `💰 *Método:* ${orderData.payment.method.toUpperCase()}\n`;
+                message += `🔄 *Troco para:* ${orderData.payment.change}\n\n`;
+                
+                message += `🛒 *ITENS DO PEDIDO*\n`;
+                orderData.items.forEach((item, index) => {
+                    message += `${index + 1}. ${item.name} - ${item.quantity}x R$ ${item.price.toFixed(2)} = R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+                });
+                
+                message += `\n💰 *RESUMO FINANCEIRO*\n`;
+                message += `📦 *Subtotal:* R$ ${orderData.totals.subtotal.toFixed(2)}\n`;
+                message += `🚚 *Taxa de entrega:* R$ ${orderData.totals.delivery.toFixed(2)}\n`;
+                message += `💵 *TOTAL:* R$ ${orderData.totals.total.toFixed(2)}\n\n`;
+                
+                message += `⏰ *Pedido realizado em:* ${orderData.timestamp}\n`;
+                message += `🆔 *ID do Pedido:* ${Date.now()}\n\n`;
+                message += `✅ *PEDIDO CONFIRMADO VIA SITE*`;
+                
+                return message;
+            }
+            
+            // Mostrar detalhes do pedido no modal
+            function showOrderDetails(orderData) {
+                const orderDetails = document.getElementById('order-details');
+                
+                let detailsHTML = `
+                    <p><strong>Cliente:</strong> ${orderData.customer.name}</p>
+                    <p><strong>Telefone:</strong> ${orderData.customer.phone}</p>
+                    <p><strong>Endereço:</strong> ${orderData.customer.address}</p>
+                    <p><strong>Entrega:</strong> ${orderData.delivery.option}</p>
+                    <p><strong>Pagamento:</strong> ${orderData.payment.method.toUpperCase()}</p>
+                    <p><strong>Total:</strong> R$ ${orderData.totals.total.toFixed(2).replace('.', ',')}</p>
+                `;
+                
+                orderDetails.innerHTML = detailsHTML;
+            }
+        });
+    </script>
+</body>
+</html>
